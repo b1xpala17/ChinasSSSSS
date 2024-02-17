@@ -1,0 +1,49 @@
+def remove_zeroes(numbers: list[int]) -> int:
+    zero_index = 0
+  
+    for i in range(len(numbers)):
+        if numbers[i] != 0:
+           
+            numbers[i], numbers[zero_index] = numbers[zero_index], numbers[i]
+           
+            zero_index += 1
+    return zero_index
+
+def test_remove_zeroes():
+ 
+    nums = []
+    new_len = remove_zeroes(nums)
+    assert new_len == 0
+    assert nums == []
+
+   
+    nums = [0]
+    new_len = remove_zeroes(nums)
+    assert new_len == 0
+    assert nums == [0]
+
+ 
+    nums = [42]
+    new_len = remove_zeroes(nums)
+    assert new_len == 1
+    assert nums == [42]
+
+ 
+    nums = [0, 0, 0, 42, 21, 100]
+    new_len = remove_zeroes(nums)
+    assert new_len == 3
+    assert nums[:new_len] == [42, 21, 100]
+
+
+    nums = [42, 21, 100, 0, 0, 0]
+    new_len = remove_zeroes(nums)
+    assert new_len == 3
+    assert nums[:new_len] == [42, 21, 100]
+
+    
+    nums = [42, 21, 0, 0, 100, 0, 5, 1, 0, 7, 3, 0, 404]
+    new_len = remove_zeroes(nums)
+    assert new_len == 8
+    assert nums[:new_len] == [42, 21, 100, 5, 1, 7, 3, 404]
+
+test_remove_zeroes()
